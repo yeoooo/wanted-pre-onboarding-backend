@@ -1,10 +1,8 @@
 package com.wanted.subject.domain.user;
 
-import com.wanted.subject.domain.board.Board;
-import org.springframework.lang.NonNull;
+import com.wanted.subject.domain.board.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,11 +23,11 @@ public class User implements UserDetails {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Board> boards;
+    private List<Post> posts;
 
-    public void addBoard(Board board) {
-        this.boards.add(board);
-        board.setUser(this);
+    public void addBoard(Post post) {
+        this.posts.add(post);
+        post.setUser(this);
     }
 
     @Override
