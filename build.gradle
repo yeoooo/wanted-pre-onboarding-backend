@@ -38,6 +38,9 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testImplementation 'mysql:mysql-connector-java:8.0.28'
+
+	//JWT
+	implementation 'com.auth0:java-jwt:4.4.0'
 }
 
 tasks.named('test') {
