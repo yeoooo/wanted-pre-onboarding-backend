@@ -7,4 +7,6 @@ public interface UserService {
 
     UserDTO findById(Long id);
 
+    String login(String email, String password);
+
 }
