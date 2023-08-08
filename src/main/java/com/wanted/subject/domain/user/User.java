@@ -1,15 +1,22 @@
 package com.wanted.subject.domain.user;
 
 import com.wanted.subject.domain.board.Post;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Table(name = "Users")
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class User implements UserDetails {
 
     @Id
@@ -23,9 +30,9 @@ public class User implements UserDetails {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
 
-    public void addBoard(Post post) {
+    public void addPost(Post post) {
         this.posts.add(post);
         post.setUser(this);
     }
@@ -63,5 +70,24 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id = '" + id + '\'' +
+                ", email = " + email +
+//                ", posts = " + posts+
+                '}';
+
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        User comp = ((User) obj);
+        return comp.getId().equals(this.id)
+                && comp.getEmail().equals(this.email)
+                && comp.getPassword().equals(this.password);
+
     }
 }
