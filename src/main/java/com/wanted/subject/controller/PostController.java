@@ -1,14 +1,21 @@
 package com.wanted.subject.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.wanted.subject.domain.board.PostDTO;
+import com.wanted.subject.domain.user.User;
 import com.wanted.subject.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +23,11 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/api/board/post")
-    public ResponseEntity<String> post(@RequestBody Map<String, Object> req) {
-        PostDTO newBoard = (PostDTO) req.get("board");
-        postService.save(newBoard);
+    public ResponseEntity<String> post(@RequestBody Map<String, Object> req, @AuthenticationPrincipal User user) {
+        System.out.println("로그인 유저 :  " + user.getEmail());
+        Map<String, Object> post = (Map<String, Object>) req.get("post");
+
+        postService.save(user, new PostDTO(post.get("title").toString(), post.get("contents").toString(), (Long) post.get("writer")));
 
         return ResponseEntity.ok("게시 완료!");
     }
@@ -38,9 +47,11 @@ public class PostController {
     }
 
     @PostMapping("/api/board/{id}/update")
-    public ResponseEntity<String> update(@PathVariable("id") Long target, @RequestBody Map<String, Object> req) {
-        PostDTO dto = (PostDTO) req.get("board");
-        postService.update(target, dto);
+    public ResponseEntity<String> update(@PathVariable("id") Long target, @RequestBody Map<String, Object> req, @AuthenticationPrincipal User user) throws IllegalAccessException {
+        Map<String, Object> post = (Map<String, Object>) req.get("post");
+
+        PostDTO dto = new PostDTO(post.get("title").toString(), post.get("content").toString(), user.getId());
+        postService.update(user, target, dto);
 
         return ResponseEntity.ok("게시글 수정 완료!");
     }
@@ -50,5 +61,17 @@ public class PostController {
         postService.delete(target);
 
         return ResponseEntity.ok("게시글 삭제 완료!");
+    }
+
+    @ExceptionHandler({NoSuchElementException.class, IllegalAccessException.class})
+    public ResponseEntity<String> postExceptionHandler(Exception e) throws JsonProcessingException {
+        Map<String, Object> resp = new HashMap<>();
+
+        resp.put("msg", e.getMessage());
+        resp.put("error", e.getClass());
+
+        return ResponseEntity.badRequest()
+                .contentType(MediaType.APPLICATION_PROBLEM_JSON)
+                .body(new JsonMapper().writeValueAsString(resp));
     }
 }
