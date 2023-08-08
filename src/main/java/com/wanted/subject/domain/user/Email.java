@@ -4,7 +4,6 @@ import java.lang.annotation.*;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.*;
 
 @Documented
 @Constraint(validatedBy = isContainsAt.class)
