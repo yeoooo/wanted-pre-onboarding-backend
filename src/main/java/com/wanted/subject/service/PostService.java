@@ -11,7 +11,7 @@ public interface PostService {
 
     Long update(User user, Long from, PostDTO to) throws IllegalAccessException;
 
-    Long delete(Long id);
+    Long delete(User user, Long target) throws IllegalAccessException;
 
     PostDTO findById(Long id);
 
