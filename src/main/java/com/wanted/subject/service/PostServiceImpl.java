@@ -45,9 +45,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
-    public Long delete(Long id) {
-        postRepository.deleteById(id);
-        return id;
+    public Long delete(User user, Long target) throws IllegalAccessException {
+        Post found = postRepository.findById(target).orElseThrow(() -> new NoSuchElementException());
+        if (found.getUser().equals(user)) {
+            postRepository.delete(found);
+        }else{
+            throw new IllegalAccessException("허용되지 않은 사용자입니다.");
+        }
+        return target;
     }
 
     @Override

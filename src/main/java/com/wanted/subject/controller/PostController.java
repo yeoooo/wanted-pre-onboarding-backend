@@ -24,7 +24,6 @@ public class PostController {
 
     @PostMapping("/api/board/post")
     public ResponseEntity<String> post(@RequestBody Map<String, Object> req, @AuthenticationPrincipal User user) {
-        System.out.println("로그인 유저 :  " + user.getEmail());
         Map<String, Object> post = (Map<String, Object>) req.get("post");
 
         postService.save(user, new PostDTO(post.get("title").toString(), post.get("contents").toString(), (Long) post.get("writer")));
@@ -57,8 +56,8 @@ public class PostController {
     }
 
     @PostMapping("/api/board/{id}/delete")
-    public ResponseEntity<String> delete(@PathVariable("id") Long target, @RequestBody Map<String, Object> req) {
-        postService.delete(target);
+    public ResponseEntity<String> delete(@PathVariable("id") Long target, @AuthenticationPrincipal User user) throws IllegalAccessException {
+        postService.delete(user, target);
 
         return ResponseEntity.ok("게시글 삭제 완료!");
     }
@@ -67,7 +66,7 @@ public class PostController {
     public ResponseEntity<String> postExceptionHandler(Exception e) throws JsonProcessingException {
         Map<String, Object> resp = new HashMap<>();
 
-        resp.put("msg", e.getMessage());
+        resp.put("msg", e.getMessage() == null ? "해당 게시글이 존재하지 않습니다." : e.getMessage());
         resp.put("error", e.getClass());
 
         return ResponseEntity.badRequest()
