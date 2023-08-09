@@ -23,10 +23,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Email
     private String email;
 
-    @Password
     private String password;
 
     @OneToMany(mappedBy = "user")
