@@ -1,6 +1,6 @@
-package com.wanted.subject.domain.user;
+package com.wanted.subject;
 
-import com.wanted.subject.domain.board.Post;
+import com.wanted.subject.Post;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

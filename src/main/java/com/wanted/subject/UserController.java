@@ -1,9 +1,7 @@
-package com.wanted.subject.controller;
+package com.wanted.subject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.wanted.subject.domain.user.UserDTO;
-import com.wanted.subject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

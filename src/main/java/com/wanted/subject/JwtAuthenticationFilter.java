@@ -1,4 +1,4 @@
-package com.wanted.subject.config;
+package com.wanted.subject;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

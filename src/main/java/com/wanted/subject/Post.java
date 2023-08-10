@@ -1,6 +1,5 @@
-package com.wanted.subject.domain.board;
+package com.wanted.subject;
 
-import com.wanted.subject.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
