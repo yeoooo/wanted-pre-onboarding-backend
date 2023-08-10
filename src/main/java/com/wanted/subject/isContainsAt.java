@@ -1,4 +1,4 @@
-package com.wanted.subject.domain.user;
+package com.wanted.subject;
 
 
 import javax.validation.ConstraintValidator;

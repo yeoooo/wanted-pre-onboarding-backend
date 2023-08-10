@@ -1,6 +1,6 @@
-package com.wanted.subject.service;
+package com.wanted.subject;
 
-import com.wanted.subject.domain.user.UserDTO;
+import com.wanted.subject.UserDTO;
 
 public interface UserService {
     Long join(UserDTO dto);

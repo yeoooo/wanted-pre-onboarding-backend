@@ -1,9 +1,5 @@
-package com.wanted.subject.service;
+package com.wanted.subject;
 
-import com.wanted.subject.config.JwtUtil;
-import com.wanted.subject.domain.user.User;
-import com.wanted.subject.domain.user.UserDTO;
-import com.wanted.subject.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

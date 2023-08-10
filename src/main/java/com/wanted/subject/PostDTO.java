@@ -1,4 +1,4 @@
-package com.wanted.subject.domain.board;
+package com.wanted.subject;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

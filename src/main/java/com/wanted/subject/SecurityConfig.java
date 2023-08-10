@@ -1,6 +1,5 @@
-package com.wanted.subject.config;
+package com.wanted.subject;
 
-import com.auth0.jwt.JWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

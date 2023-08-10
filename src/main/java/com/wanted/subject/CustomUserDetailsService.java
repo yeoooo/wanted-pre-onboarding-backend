@@ -1,7 +1,7 @@
-package com.wanted.subject.service;
+package com.wanted.subject;
 
-import com.wanted.subject.domain.user.User;
-import com.wanted.subject.domain.user.UserRepository;
+import com.wanted.subject.User;
+import com.wanted.subject.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

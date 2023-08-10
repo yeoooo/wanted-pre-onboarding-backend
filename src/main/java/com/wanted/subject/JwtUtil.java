@@ -1,4 +1,4 @@
-package com.wanted.subject.config;
+package com.wanted.subject;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

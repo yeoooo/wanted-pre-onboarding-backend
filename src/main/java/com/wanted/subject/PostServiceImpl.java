@@ -1,10 +1,5 @@
-package com.wanted.subject.service;
+package com.wanted.subject;
 
-import com.wanted.subject.domain.board.Post;
-import com.wanted.subject.domain.board.PostDTO;
-import com.wanted.subject.domain.board.PostRepository;
-import com.wanted.subject.domain.user.User;
-import com.wanted.subject.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

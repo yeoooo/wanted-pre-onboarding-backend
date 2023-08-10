@@ -1,7 +1,6 @@
-package com.wanted.subject.service;
+package com.wanted.subject;
 
-import com.wanted.subject.domain.board.PostDTO;
-import com.wanted.subject.domain.user.User;
+import com.wanted.subject.PostDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
