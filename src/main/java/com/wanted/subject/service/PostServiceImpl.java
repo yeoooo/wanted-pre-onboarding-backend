@@ -4,6 +4,7 @@ import com.wanted.subject.domain.board.Post;
 import com.wanted.subject.domain.board.PostDTO;
 import com.wanted.subject.domain.board.PostRepository;
 import com.wanted.subject.domain.user.User;
+import com.wanted.subject.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,19 +18,23 @@ import java.util.NoSuchElementException;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
-    public Long save(User user, PostDTO dto) {
+    public Long save(Long user_id, PostDTO dto) {
+        User user = userRepository.findById(user_id).orElseThrow(() -> new NoSuchElementException());
         Post newOne = new Post(null, dto.getTitle(), dto.getContent(), user);
+        user.addPost(newOne);
         postRepository.save(newOne);
         return newOne.getId();
     }
 
     @Override
     @Transactional
-    public Long update(User user, Long from, PostDTO to) throws IllegalAccessException {
+    public Long update(Long user_id, Long from, PostDTO to) throws IllegalAccessException {
         Post found = postRepository.findById(from).orElseThrow(() -> new NoSuchElementException());
+        User user = userRepository.findById(user_id).orElseThrow(() -> new NoSuchElementException());
         if (found.getUser().equals(user)) {
             postRepository.save(
                     new Post(found.getId()
@@ -45,7 +50,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
-    public Long delete(User user, Long target) throws IllegalAccessException {
+    public Long delete(Long user_id, Long target) throws IllegalAccessException {
+        User user = userRepository.findById(user_id).orElseThrow(() -> new NoSuchElementException());
         Post found = postRepository.findById(target).orElseThrow(() -> new NoSuchElementException());
         if (found.getUser().equals(user)) {
             postRepository.delete(found);

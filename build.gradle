@@ -26,6 +26,14 @@ ext {
 	set('snippetsDir', file("build/generated-snippets"))
 }
 
+jar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	manifest {
+		attributes['Main-Class'] = "com.wanted.subject.SubjectApplication"
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
