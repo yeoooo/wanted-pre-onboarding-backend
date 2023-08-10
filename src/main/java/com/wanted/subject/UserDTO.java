@@ -1,14 +1,12 @@
 package com.wanted.subject;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
+@ToString
 public class UserDTO {
     @Email
     private String email;
