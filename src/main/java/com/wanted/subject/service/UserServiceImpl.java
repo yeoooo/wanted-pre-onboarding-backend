@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.NoSuchElementException;
 
 @Service
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService{
     private final JwtUtil jwtUtil;
 
     @Override
+    @Transactional
     public Long join(UserDTO dto) {
         User newOne = new User(null, dto.getEmail(), passwordEncoder.encode(dto.getPassword()), null);
 
@@ -33,12 +35,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public UserDTO findById(Long id) {
         return UserDTO.toDTO(userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException()));
     }
 
     @Override
+    @Transactional
     public String login(String email, String password) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
         authenticationManagerBuilder.getObject().authenticate(authenticationToken);

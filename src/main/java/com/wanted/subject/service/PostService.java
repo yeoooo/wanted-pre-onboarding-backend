@@ -7,11 +7,11 @@ import org.springframework.data.domain.Pageable;
 
 public interface PostService {
 
-    Long save(User user, PostDTO dto);
+    Long save(Long user, PostDTO dto);
 
-    Long update(User user, Long from, PostDTO to) throws IllegalAccessException;
+    Long update(Long user, Long from, PostDTO to) throws IllegalAccessException;
 
-    Long delete(User user, Long target) throws IllegalAccessException;
+    Long delete(Long user, Long target) throws IllegalAccessException;
 
     PostDTO findById(Long id);
 

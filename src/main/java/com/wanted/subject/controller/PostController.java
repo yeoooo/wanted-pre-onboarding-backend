@@ -26,7 +26,7 @@ public class PostController {
     public ResponseEntity<String> post(@RequestBody Map<String, Object> req, @AuthenticationPrincipal User user) {
         Map<String, Object> post = (Map<String, Object>) req.get("post");
 
-        postService.save(user, new PostDTO(post.get("title").toString(), post.get("contents").toString(), (Long) post.get("writer")));
+        postService.save(user.getId(), new PostDTO(post.get("title").toString(), post.get("contents").toString(), (Long) post.get("writer")));
 
         return ResponseEntity.ok("게시 완료!");
     }
@@ -50,14 +50,14 @@ public class PostController {
         Map<String, Object> post = (Map<String, Object>) req.get("post");
 
         PostDTO dto = new PostDTO(post.get("title").toString(), post.get("content").toString(), user.getId());
-        postService.update(user, target, dto);
+        postService.update(user.getId(), target, dto);
 
         return ResponseEntity.ok("게시글 수정 완료!");
     }
 
     @PostMapping("/api/board/{id}/delete")
     public ResponseEntity<String> delete(@PathVariable("id") Long target, @AuthenticationPrincipal User user) throws IllegalAccessException {
-        postService.delete(user, target);
+        postService.delete(user.getId(), target);
 
         return ResponseEntity.ok("게시글 삭제 완료!");
     }
