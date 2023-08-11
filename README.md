@@ -89,8 +89,14 @@ https://github.com/yeoooo/wanted-pre-onboarding-backend/assets/71688432/e7232175
 
 ## [📄 API 명세](https://documenter.getpostman.com/view/21304389/2s9Xy3sBBP)  
 
-## 💭 배포 주소  
-ec2-52-78-211-102.ap-northeast-2.compute.amazonaws.com
+## 💭 배포  
+- ### 시스템 구성
+  
+  <img src = https://github.com/yeoooo/wanted-pre-onboarding-backend/assets/71688432/5a6e8906-939e-4756-821e-dccaef4f66b4 style = "height : 600px; width : 600px;" align = "center"/>
+  
+
+- ### 주소  
+  ec2-52-78-211-102.ap-northeast-2.compute.amazonaws.com  
 
 
 
