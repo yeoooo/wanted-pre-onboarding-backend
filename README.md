@@ -96,7 +96,7 @@ https://github.com/yeoooo/wanted-pre-onboarding-backend/assets/71688432/e7232175
   
 
 - ### 주소  
-  ec2-52-79-105-177.ap-northeast-2.compute.amazonaws.com
+  ec2-3-35-230-220.ap-northeast-2.compute.amazonaws.com
 
 
 
